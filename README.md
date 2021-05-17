@@ -21,23 +21,23 @@
 * Follow the steps for your [operating system here](https://docs.docker.com/desktop/)
 
 ## Docker Hub account and repository
-* A Docker repository allows one store Docker images
+* A Docker repository allows one to store Docker images
 * Can be shared with their team, customers or the Docker community
 * Version control for images
 * One must create a Docker Hub account to utilise this
 
-### Creating a Docker repository:
+**Creating a Docker repository:**
 * `docker login` - log into your Docker account
 * `docker tag nginx:latest kingbigw/eng84_william_nginx` - created an image from an Nginx container
 * `docker push kingbigw/eng84_william_nginx` - push the image
 
-### Committing and pushing changes:
+**Committing and pushing changes:**
 * `docker commit container_id kingbigw/eng84_william_nginx` - changes it locally
 * `docker push kingbigw/eng84_william_nginx:latest` - push to make the changes remotely
 
 ## Docker Containers and images
 * **Images** - a read-only template with instructions for creating a Docker container
-* **Containers** - a runnable instance of an image
+* **Containers** - an isolated, runnable instance of an image
 
 ## Building customised images
 To build a customised image, one can either:
@@ -61,19 +61,19 @@ Microservices are a method of developing software systems that focuses on buildi
 * `docker stop container_id` - stop a container from running
 * `docker start container_id` - start a container (that was stopped)
 
-### Run a container that runs on a port:
+**Run a container that runs on a port:**
 * `docker run -d -p 2368:2368 ghost` - run ghost on detached mode, on port 2368
 * `docker run -d -p 88:80 nginx` - run Nginx from port 88 (localhost) and port 80 in the container
 
-## SSH into a Container
+**SSH into a Container:**
 * `alias docker="winpty docker"` - needs to be done the first time
 * `docker exec -it container_id sh` - SSH into container
 
-### Copying a file from the host machine into a container:
+**Copying a file from the host machine into a container:**
 * `docker cp index.html container_id:usr/share/nginx/html/index.html` - copying `index.html` to the Nginx container
 * `docker cp file container_id:file_loc_in_container` - copying a file to a container
 
-### Web page is stored in (Nginx):
+**Web page is stored in (Nginx):**
 * `cd usr/share/nginx/html/`
 * It's `index.html`
 
