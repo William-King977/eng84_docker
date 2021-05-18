@@ -1,5 +1,5 @@
 # Docker
-* Open source containerisation platform which can communicate with any OS
+* Open source containerisation platform which can communicate with any OS (images work on any OS)
 * Shares resources of OS, rather than holding on to them
 * Containerises apps for fast and consistent delivery
 * Separates applications from their infrastructure
@@ -26,10 +26,11 @@
 * Version control for images
 * One must create a Docker Hub account to utilise this
 
-**Creating a Docker repository:**
-* `docker login` - log into your Docker account
-* `docker tag nginx:latest kingbigw/eng84_william_nginx` - created an image from an Nginx container
-* `docker push kingbigw/eng84_william_nginx` - push the image
+**Creating a Docker repository and pushing the image:**
+* `docker login` - log into your Docker Hub account
+* `docker commit container_id kingbigw/eng84_william_nginx` - creates an image from the container
+* `docker stop container_id` -  stop the container (remove it if you want)
+* `docker push kingbigw/eng84_william_nginx` - push the image to Docker Hub
 
 **Committing and pushing changes:**
 * `docker commit container_id kingbigw/eng84_william_nginx` - changes it locally
@@ -70,8 +71,9 @@ Microservices are a method of developing software systems that focuses on buildi
 * `docker exec -it container_id sh` - SSH into container
 
 **Copying a file from the host machine into a container:**
-* `docker cp index.html container_id:usr/share/nginx/html/index.html` - copying `index.html` to the Nginx container
+* `docker cp index.html container_id:/usr/share/nginx/html/` - copying `index.html` to the Nginx container
 * `docker cp file container_id:file_loc_in_container` - copying a file to a container
+* NOTE: in `file_loc_in_container`, don't include the file name!
 
 **Web page is stored in (Nginx):**
 * `cd usr/share/nginx/html/`
