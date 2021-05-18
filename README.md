@@ -29,7 +29,7 @@
 **Creating a Docker repository and pushing the image:**
 * `docker login` - log into your Docker Hub account
 * `docker commit container_id kingbigw/eng84_william_nginx` - creates an image from the container
-* `docker stop container_id` -  stop the container (remove it if you want)
+* `docker stop container_id` - stop the container (remove it if you want)
 * `docker push kingbigw/eng84_william_nginx` - push the image to Docker Hub
 
 **Committing and pushing changes:**
@@ -61,6 +61,7 @@ Microservices are a method of developing software systems that focuses on buildi
 * `docker rm container_id -f` - to force remove a container
 * `docker stop container_id` - stop a container from running
 * `docker start container_id` - start a container (that was stopped)
+* `docker run -d -p 4000:4000 docs/docker.github.io` - Docker official documentation (running on port 4000)
 
 **Run a container that runs on a port:**
 * `docker run -d -p 2368:2368 ghost` - run ghost on detached mode, on port 2368
@@ -78,6 +79,31 @@ Microservices are a method of developing software systems that focuses on buildi
 **Web page is stored in (Nginx):**
 * `cd usr/share/nginx/html/`
 * It's `index.html`
+
+## Automate the build steps of our customised Nginx image
+* Using Dockerfile with a set of instructions
+* Naming convention for a Dockerfile is `Dockerfile`
+* Sample code for building an Nginx image and importing an application inside: 
+  ```
+  # Use Nginx official image as our base image
+  # By using keyword FROM
+
+  # Using Nginx official image
+  FROM nginx
+
+  # Optional, but a good practice
+  LABEL MAINTAINER = kingbigw
+
+  # Copying app1 from our OS to the specified location (in container) 
+  COPY app1 /usr/share/nginx/html
+
+  # Expose required port for the base image
+  EXPOSE 80
+
+  # Execute command for the base image
+  CMD ["nginx", "-g", "daemon off;"]
+  ```
+* `docker build -t kingbigw/eng84_william_nginx .` - builds an image from the Dockerfile
 
 # Kubernetes (K8)
 * Containerisation orchestration tool used for automating the deployment, scaling and management for containerised applications
